@@ -27,7 +27,7 @@ Gazebo will be launched and virtual robot will be mounted on a table, `add_gripp
 
 ## 1.3 Moveit simulation:
 
-Please refer to [uf_robot_moveit_config](uf_robot_moveit_config/Readme.md) package.   
+Please refer to [uf_robot_moveit_config](Readme.md) package.   
   
 
 # 2. Controlling Real Robot
