@@ -56,7 +56,7 @@ Below is the network diagram from `rqt_graph` output:
 
 
 
-# 重要说明:
+# Important::
 
 这篇ReadMe适用于UFACTORY xArm系列之外的产品(如Lite 6, UF850)，本说明使用 "lite6" 作为例子，使用UFACTORY 850的用户，请将"**lite6**"关键字替换为"**uf850**"。  
 
