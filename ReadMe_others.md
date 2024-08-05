@@ -73,34 +73,36 @@ How to use the previous version of "xarm_ros" to open xArm series products, to u
 
 # 1. 仿真
 
-## 1.1 简单的Rviz可视化:  
+## 1.1 简单的Rviz可视化:  Easy Rviz visualization:
 ```bash
-$ roslaunch xarm_description lite6_rviz_display.launch
+roslaunch xarm_description lite6_rviz_display.launch
 ```
 运行之后，机械臂的模型会出现在Rviz界面中，"joint state publisher" 面板可以用来调整手臂的位姿。  
+After the process, the mechanical arm model appeared in the Rviz interface, and the "joint state publisher" face plate was available for adjustment of the arm posture.
 
-
-## 1.2 Gazebo环境中加载仿真模型:
+## 1.2 Gazebo环境中加载仿真模型:Gazebo environment model:
 ```bash
-$ roslaunch xarm_gazebo lite6_beside_table.launch [add_gripper:=true] [add_vacuum_gripper:=true] 
+roslaunch xarm_gazebo lite6_beside_table.launch [add_gripper:=true] [add_vacuum_gripper:=true] 
 ```
-Gazebo启动后, 虚拟机械臂会放置在桌子边沿位置，`add_gripper` 和 `add_vacuum_gripper` 是另外的可选参数，可以根据需要给定`true`来加载UFACTORY官方的夹爪或吸头的配件模型，注意只能加载一款末端执行器。  
+Gazebo启动后, 虚拟机械臂会放置在桌子边沿位置，`add_gripper` 和 `add_vacuum_gripper` 是另外的可选参数，可以根据需要给定`true`来加载UFACTORY官方的夹爪或吸头的配件模型，注意只能加载一款末端执行器。
+When Gazebo moves, the machine arm is left behind, and the position along the axis is `add_gripper` and `add_vacuum_gripper`. Please note that the end of the device is not valid.
 
 ## 1.3 Moveit规划仿真:
+Moveit details:
 
 请参考[uf_robot_moveit_config](uf_robot_moveit_config/Readme_cn.md)   
-   
+Reference [uf_robot_moveit_config](uf_robot_moveit_config/Readme_cn.md) 
 
 # 2. 控制真实机械臂
 
 # 2.1 ROS service 控制:
 首先启动 UFACTORY ROS 驱动:
 ```bash
-$ roslaunch xarm_bringup lite6_server.launch robot_ip:=192.168.1.xxx (your robot IP)
+roslaunch xarm_bringup lite6_server.launch robot_ip:=192.168.1.xxx (your robot IP)
 ```
 然后，请认真阅读和参考[xarm_api/xarm_msgs 部分](https://github.com/xArm-Developer/xarm_ros/blob/master/ReadMe_cn.md#57-xarm_apixarm_msgs), 其中的概念、提供的服务和定义的消息类型都是和xarm一致的，除了默认的命名空间是 `ufactory` 而不是 `xarm`。举例来说，对于非xArm系列如Lite6手臂，调用全部关节使能服务的方法为:
 ```bash
-$ rosservice call /ufactory/motion_ctrl 8 1
+rosservice call /ufactory/motion_ctrl 8 1
 ```
 所有xArm适用的服务(关节/笛卡尔运动, 速度模式运动, servo运动等等)以及 [模式操作](https://github.com/xArm-Developer/xarm_ros/blob/master/ReadMe_cn.md#6-%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2)都可以使用在Lite 6 型号中, 调用方法很简单，将之前说明中的`/xarm`命名空间替换为`/ufactory`就好。 
 
