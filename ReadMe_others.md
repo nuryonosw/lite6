@@ -14,7 +14,7 @@ If you have used "xarm_ros" for xArm series before, the main differences for new
 
 ## 1.1 Simple Rviz visualization:  
 ```bash
-$ roslaunch xarm_description lite6_rviz_display.launch
+roslaunch xarm_description lite6_rviz_display.launch
 ```
 The robot model will appear in Rviz window and "joint state publisher" panel can be used to adjust the posture of that robot.  
 
