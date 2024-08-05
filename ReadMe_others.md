@@ -21,7 +21,7 @@ The robot model will appear in Rviz window and "joint state publisher" panel can
 
 ## 1.2 Load robot model in Gazebo environment:
 ```bash
-$ roslaunch xarm_gazebo lite6_beside_table.launch [add_gripper:=true] [add_vacuum_gripper:=true] 
+roslaunch xarm_gazebo lite6_beside_table.launch [add_gripper:=true] [add_vacuum_gripper:=true] 
 ```
 Gazebo will be launched and virtual robot will be mounted on a table, `add_gripper` and `add_vacuum_gripper` are optional arguments. However, only one end tool should be installed.  
 
@@ -35,11 +35,11 @@ Please refer to [uf_robot_moveit_config](Readme.md) package.
 # 2.1 ROS service control:
 First bring up the UFACTORY ros driver:
 ```bash
-$ roslaunch xarm_bringup lite6_server.launch robot_ip:=192.168.1.xxx (your robot IP)
+roslaunch xarm_bringup lite6_server.launch robot_ip:=192.168.1.xxx (your robot IP)
 ```
 Then, please refer to [xarm_api/xarm_msgs part](https://github.com/xArm-Developer/xarm_ros#57-xarm_apixarm_msgs), the concepts, provided services or messages are all the same except the **default namespace for non-xArm series** is `ufactory` rather than `xarm`. For example, to call the service of enabling all joints:
 ```bash
-$ rosservice call /ufactory/motion_ctrl 8 1
+rosservice call /ufactory/motion_ctrl 8 1
 ```
 All the xArm services (joint/cartesian motion, velocity motion, servo motions, etc) including [mode operations](https://github.com/xArm-Developer/xarm_ros#6-mode-change) can be directly used on new models like Lite 6, just replace previous namespace `/xarm` with `/ufactory`. 
 
@@ -62,9 +62,13 @@ Below is the network diagram from `rqt_graph` output:
 
 如果您之前已经使用过 "xarm_ros" 开发 xArm 系列产品, 对于UFACTORY其他系列的ros开发，方法和操作大同小异，主要的区别在于:  
 
-* 默认的命名空间从 `xarm` 更改为 `ufactory`;  
+This section ReadMe can be used for products other than the UFACTORY xArm series (such as Lite 6, UF850), this description uses "lite6", the example used is for UFACTORY 850, the general code is "**lite6**", and the key character change is "*". *uf850**".  
 
-* 机械臂全状态反馈的话题(topic) 名称由 `xarm_states` 更改为 `robot_states`;   
+How to use the previous version of "xarm_ros" to open xArm series products, to use UFACTORY and other series of ros, to use the same operation method, to use the main distinction:
+
+* 默认的命名空间从 `xarm` 更改为 `ufactory`;  Authorized naming space for `xarm` modification `ufactory`;
+
+* 机械臂全状态反馈的话题(topic) 名称由 `xarm_states` 更改为 `robot_states`;   Topic about the overall condition of the machine arm Name: `xarm_states` Change: `robot_states`;
 
 
 # 1. 仿真
